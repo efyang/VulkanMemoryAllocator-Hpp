@@ -32,63 +32,6 @@ namespace VMA_HPP_NAMESPACE {
 
 
 namespace VMA_HPP_NAMESPACE {
-  class VirtualAllocation {
-  public:
-    using CType      = VmaVirtualAllocation;
-    using NativeType = VmaVirtualAllocation;
-  public:
-    VULKAN_HPP_CONSTEXPR         VirtualAllocation() = default;
-    VULKAN_HPP_CONSTEXPR         VirtualAllocation(std::nullptr_t) VULKAN_HPP_NOEXCEPT {}
-    VULKAN_HPP_TYPESAFE_EXPLICIT VirtualAllocation(VmaVirtualAllocation virtualAllocation) VULKAN_HPP_NOEXCEPT : m_virtualAllocation(virtualAllocation) {}
-
-#if defined(VULKAN_HPP_TYPESAFE_CONVERSION)
-    VirtualAllocation& operator=(VmaVirtualAllocation virtualAllocation) VULKAN_HPP_NOEXCEPT {
-      m_virtualAllocation = virtualAllocation;
-      return *this;
-    }
-#endif
-
-    VirtualAllocation& operator=(std::nullptr_t) VULKAN_HPP_NOEXCEPT {
-      m_virtualAllocation = {};
-      return *this;
-    }
-
-#if defined( VULKAN_HPP_HAS_SPACESHIP_OPERATOR )
-    auto operator<=>(VirtualAllocation const &) const = default;
-#else
-    bool operator==(VirtualAllocation const & rhs) const VULKAN_HPP_NOEXCEPT {
-      return m_virtualAllocation == rhs.m_virtualAllocation;
-    }
-#endif
-
-    VULKAN_HPP_TYPESAFE_EXPLICIT operator VmaVirtualAllocation() const VULKAN_HPP_NOEXCEPT {
-      return m_virtualAllocation;
-    }
-
-    explicit operator bool() const VULKAN_HPP_NOEXCEPT {
-      return m_virtualAllocation != VK_NULL_HANDLE;
-    }
-
-    bool operator!() const VULKAN_HPP_NOEXCEPT {
-      return m_virtualAllocation == VK_NULL_HANDLE;
-    }
-
-  private:
-    VmaVirtualAllocation m_virtualAllocation = {};
-  };
-  VULKAN_HPP_STATIC_ASSERT(sizeof(VirtualAllocation) == sizeof(VmaVirtualAllocation),
-                           "handle and wrapper have different size!");
-}
-#ifndef VULKAN_HPP_NO_SMART_HANDLE
-namespace VULKAN_HPP_NAMESPACE {
-  template<> struct UniqueHandleTraits<VMA_HPP_NAMESPACE::VirtualAllocation, VMA_HPP_NAMESPACE::Dispatcher> {
-    using deleter = VMA_HPP_NAMESPACE::Deleter<VMA_HPP_NAMESPACE::VirtualAllocation, VMA_HPP_NAMESPACE::VirtualBlock>;
-  };
-}
-namespace VMA_HPP_NAMESPACE { using UniqueVirtualAllocation = VULKAN_HPP_NAMESPACE::UniqueHandle<VirtualAllocation, Dispatcher>; }
-#endif
-
-namespace VMA_HPP_NAMESPACE {
   class Pool {
   public:
     using CType      = VmaPool;
@@ -143,6 +86,120 @@ namespace VULKAN_HPP_NAMESPACE {
   };
 }
 namespace VMA_HPP_NAMESPACE { using UniquePool = VULKAN_HPP_NAMESPACE::UniqueHandle<Pool, Dispatcher>; }
+#endif
+
+namespace VMA_HPP_NAMESPACE {
+  class Allocation {
+  public:
+    using CType      = VmaAllocation;
+    using NativeType = VmaAllocation;
+  public:
+    VULKAN_HPP_CONSTEXPR         Allocation() = default;
+    VULKAN_HPP_CONSTEXPR         Allocation(std::nullptr_t) VULKAN_HPP_NOEXCEPT {}
+    VULKAN_HPP_TYPESAFE_EXPLICIT Allocation(VmaAllocation allocation) VULKAN_HPP_NOEXCEPT : m_allocation(allocation) {}
+
+#if defined(VULKAN_HPP_TYPESAFE_CONVERSION)
+    Allocation& operator=(VmaAllocation allocation) VULKAN_HPP_NOEXCEPT {
+      m_allocation = allocation;
+      return *this;
+    }
+#endif
+
+    Allocation& operator=(std::nullptr_t) VULKAN_HPP_NOEXCEPT {
+      m_allocation = {};
+      return *this;
+    }
+
+#if defined( VULKAN_HPP_HAS_SPACESHIP_OPERATOR )
+    auto operator<=>(Allocation const &) const = default;
+#else
+    bool operator==(Allocation const & rhs) const VULKAN_HPP_NOEXCEPT {
+      return m_allocation == rhs.m_allocation;
+    }
+#endif
+
+    VULKAN_HPP_TYPESAFE_EXPLICIT operator VmaAllocation() const VULKAN_HPP_NOEXCEPT {
+      return m_allocation;
+    }
+
+    explicit operator bool() const VULKAN_HPP_NOEXCEPT {
+      return m_allocation != VK_NULL_HANDLE;
+    }
+
+    bool operator!() const VULKAN_HPP_NOEXCEPT {
+      return m_allocation == VK_NULL_HANDLE;
+    }
+
+  private:
+    VmaAllocation m_allocation = {};
+  };
+  VULKAN_HPP_STATIC_ASSERT(sizeof(Allocation) == sizeof(VmaAllocation),
+                           "handle and wrapper have different size!");
+}
+#ifndef VULKAN_HPP_NO_SMART_HANDLE
+namespace VULKAN_HPP_NAMESPACE {
+  template<> struct UniqueHandleTraits<VMA_HPP_NAMESPACE::Allocation, VMA_HPP_NAMESPACE::Dispatcher> {
+    using deleter = VMA_HPP_NAMESPACE::Deleter<VMA_HPP_NAMESPACE::Allocation, VMA_HPP_NAMESPACE::Allocator>;
+  };
+}
+namespace VMA_HPP_NAMESPACE { using UniqueAllocation = VULKAN_HPP_NAMESPACE::UniqueHandle<Allocation, Dispatcher>; }
+#endif
+
+namespace VMA_HPP_NAMESPACE {
+  class VirtualAllocation {
+  public:
+    using CType      = VmaVirtualAllocation;
+    using NativeType = VmaVirtualAllocation;
+  public:
+    VULKAN_HPP_CONSTEXPR         VirtualAllocation() = default;
+    VULKAN_HPP_CONSTEXPR         VirtualAllocation(std::nullptr_t) VULKAN_HPP_NOEXCEPT {}
+    VULKAN_HPP_TYPESAFE_EXPLICIT VirtualAllocation(VmaVirtualAllocation virtualAllocation) VULKAN_HPP_NOEXCEPT : m_virtualAllocation(virtualAllocation) {}
+
+#if defined(VULKAN_HPP_TYPESAFE_CONVERSION)
+    VirtualAllocation& operator=(VmaVirtualAllocation virtualAllocation) VULKAN_HPP_NOEXCEPT {
+      m_virtualAllocation = virtualAllocation;
+      return *this;
+    }
+#endif
+
+    VirtualAllocation& operator=(std::nullptr_t) VULKAN_HPP_NOEXCEPT {
+      m_virtualAllocation = {};
+      return *this;
+    }
+
+#if defined( VULKAN_HPP_HAS_SPACESHIP_OPERATOR )
+    auto operator<=>(VirtualAllocation const &) const = default;
+#else
+    bool operator==(VirtualAllocation const & rhs) const VULKAN_HPP_NOEXCEPT {
+      return m_virtualAllocation == rhs.m_virtualAllocation;
+    }
+#endif
+
+    VULKAN_HPP_TYPESAFE_EXPLICIT operator VmaVirtualAllocation() const VULKAN_HPP_NOEXCEPT {
+      return m_virtualAllocation;
+    }
+
+    explicit operator bool() const VULKAN_HPP_NOEXCEPT {
+      return m_virtualAllocation != VK_NULL_HANDLE;
+    }
+
+    bool operator!() const VULKAN_HPP_NOEXCEPT {
+      return m_virtualAllocation == VK_NULL_HANDLE;
+    }
+
+  private:
+    VmaVirtualAllocation m_virtualAllocation = {};
+  };
+  VULKAN_HPP_STATIC_ASSERT(sizeof(VirtualAllocation) == sizeof(VmaVirtualAllocation),
+                           "handle and wrapper have different size!");
+}
+#ifndef VULKAN_HPP_NO_SMART_HANDLE
+namespace VULKAN_HPP_NAMESPACE {
+  template<> struct UniqueHandleTraits<VMA_HPP_NAMESPACE::VirtualAllocation, VMA_HPP_NAMESPACE::Dispatcher> {
+    using deleter = VMA_HPP_NAMESPACE::Deleter<VMA_HPP_NAMESPACE::VirtualAllocation, VMA_HPP_NAMESPACE::VirtualBlock>;
+  };
+}
+namespace VMA_HPP_NAMESPACE { using UniqueVirtualAllocation = VULKAN_HPP_NAMESPACE::UniqueHandle<VirtualAllocation, Dispatcher>; }
 #endif
 
 namespace VMA_HPP_NAMESPACE {
@@ -331,63 +388,6 @@ namespace VULKAN_HPP_NAMESPACE {
   };
 }
 namespace VMA_HPP_NAMESPACE { using UniqueDefragmentationContext = VULKAN_HPP_NAMESPACE::UniqueHandle<DefragmentationContext, Dispatcher>; }
-#endif
-
-namespace VMA_HPP_NAMESPACE {
-  class Allocation {
-  public:
-    using CType      = VmaAllocation;
-    using NativeType = VmaAllocation;
-  public:
-    VULKAN_HPP_CONSTEXPR         Allocation() = default;
-    VULKAN_HPP_CONSTEXPR         Allocation(std::nullptr_t) VULKAN_HPP_NOEXCEPT {}
-    VULKAN_HPP_TYPESAFE_EXPLICIT Allocation(VmaAllocation allocation) VULKAN_HPP_NOEXCEPT : m_allocation(allocation) {}
-
-#if defined(VULKAN_HPP_TYPESAFE_CONVERSION)
-    Allocation& operator=(VmaAllocation allocation) VULKAN_HPP_NOEXCEPT {
-      m_allocation = allocation;
-      return *this;
-    }
-#endif
-
-    Allocation& operator=(std::nullptr_t) VULKAN_HPP_NOEXCEPT {
-      m_allocation = {};
-      return *this;
-    }
-
-#if defined( VULKAN_HPP_HAS_SPACESHIP_OPERATOR )
-    auto operator<=>(Allocation const &) const = default;
-#else
-    bool operator==(Allocation const & rhs) const VULKAN_HPP_NOEXCEPT {
-      return m_allocation == rhs.m_allocation;
-    }
-#endif
-
-    VULKAN_HPP_TYPESAFE_EXPLICIT operator VmaAllocation() const VULKAN_HPP_NOEXCEPT {
-      return m_allocation;
-    }
-
-    explicit operator bool() const VULKAN_HPP_NOEXCEPT {
-      return m_allocation != VK_NULL_HANDLE;
-    }
-
-    bool operator!() const VULKAN_HPP_NOEXCEPT {
-      return m_allocation == VK_NULL_HANDLE;
-    }
-
-  private:
-    VmaAllocation m_allocation = {};
-  };
-  VULKAN_HPP_STATIC_ASSERT(sizeof(Allocation) == sizeof(VmaAllocation),
-                           "handle and wrapper have different size!");
-}
-#ifndef VULKAN_HPP_NO_SMART_HANDLE
-namespace VULKAN_HPP_NAMESPACE {
-  template<> struct UniqueHandleTraits<VMA_HPP_NAMESPACE::Allocation, VMA_HPP_NAMESPACE::Dispatcher> {
-    using deleter = VMA_HPP_NAMESPACE::Deleter<VMA_HPP_NAMESPACE::Allocation, VMA_HPP_NAMESPACE::Allocator>;
-  };
-}
-namespace VMA_HPP_NAMESPACE { using UniqueAllocation = VULKAN_HPP_NAMESPACE::UniqueHandle<Allocation, Dispatcher>; }
 #endif
 
 namespace VMA_HPP_NAMESPACE {

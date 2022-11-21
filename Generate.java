@@ -252,13 +252,14 @@ public class Generate {
                 content.append(processTemplate(ifdef, typedefMatcher.start(), """
                         
                         namespace VULKAN_HPP_NAMESPACE {
+                          using $1 = Flags<VMA_HPP_NAMESPACE::$0>;
                           template<> struct FlagTraits<VMA_HPP_NAMESPACE::$0> {
-                            enum : VkFlags {
-                              allFlags =
-                                {{{${ ^|} VkFlags(VMA_HPP_NAMESPACE::$0::e${name})}}}
+                            static VULKAN_HPP_CONST_OR_CONSTEXPR bool isBitmask = true;
+                            static VULKAN_HPP_CONST_OR_CONSTEXPR $1 allFlags =
+                                {{{${ ^|} VMA_HPP_NAMESPACE::$0::e${name}}}}
+                                ;
                             };
-                          };
-                        }
+                        };
                         
                         namespace VMA_HPP_NAMESPACE {
                         
